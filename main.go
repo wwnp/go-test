@@ -2,24 +2,38 @@ package main
 
 import "fmt"
 
-type Foo interface {
-	getWidth() int
+type Shape interface {
+	ShapeArea
+	ShapePerimeter
+}
+type ShapeArea interface {
+	getArea() int
+}
+type ShapePerimeter interface {
+	getPerimeter() int
 }
 
-type TestStruct struct {
+type Rectangle struct {
 	width int
 }
 
-func (t TestStruct) getWidth() int {
-	return t.width
+func (r Rectangle) getArea() int {
+	return r.width
+}
+func (r Rectangle) getPerimeter() int {
+	return 123
 }
 
-func getWidthThroughInterface(f Foo) {
-	fmt.Println(f.getWidth())
+func getArea(s Shape) {
+	fmt.Println(s.getArea())
+}
+func getPerimeter(s Shape) {
+	fmt.Println(s.getPerimeter())
 }
 
 func main() {
-	testQ := TestStruct{50}
-	// fmt.Println(testQ.getWidth())
-	getWidthThroughInterface(testQ)
+	testQ := Rectangle{50}
+	// fmt.Println(testQ.getArea())
+	getArea(testQ)
+	getPerimeter(testQ)
 }
