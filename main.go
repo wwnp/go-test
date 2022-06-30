@@ -3,37 +3,22 @@ package main
 import "fmt"
 
 type Shape interface {
-	ShapeArea
-	ShapePerimeter
-}
-type ShapeArea interface {
-	getArea() int
-}
-type ShapePerimeter interface {
-	getPerimeter() int
+	Area() int
 }
 
-type Rectangle struct {
-	width int
+type Rec struct {
+	side int
 }
 
-func (r Rectangle) getArea() int {
-	return r.width
-}
-func (r Rectangle) getPerimeter() int {
-	return 123
-}
-
-func getArea(s Shape) {
-	fmt.Println(s.getArea())
-}
-func getPerimeter(s Shape) {
-	fmt.Println(s.getPerimeter())
+func (r Rec) Area() int {
+	return r.side * r.side
 }
 
 func main() {
-	testQ := Rectangle{50}
-	// fmt.Println(testQ.getArea())
-	getArea(testQ)
-	getPerimeter(testQ)
+	rec := Rec{5}
+	printShape(rec)
+
+}
+func printShape(s Shape) {
+	fmt.Println(s.Area())
 }
